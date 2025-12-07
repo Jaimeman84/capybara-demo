@@ -58,6 +58,25 @@ bundle exec rackup -p 4567
 
 Then visit [http://localhost:4567](http://localhost:4567) in your browser.
 
+## Continuous Integration
+
+This project includes a GitHub Actions workflow that automatically runs all tests on every push and pull request.
+
+### Workflow Configuration
+**File:** [.github/workflows/test.yml](.github/workflows/test.yml)
+
+**Triggers:**
+- Push to `main` or `develop` branches
+- Pull requests to `main` or `develop` branches
+
+**What it does:**
+1. Sets up Ruby 3.4
+2. Installs dependencies with Bundler
+3. Runs RSpec tests
+4. Runs Cucumber tests (using headless `rack_test` driver for speed)
+
+**Note:** The Cucumber tests automatically use the headless `rack_test` driver in CI environments, while using the visible Firefox browser for local development.
+
 ## Running Tests
 
 This project includes **two complete test suites** demonstrating different BDD approaches:

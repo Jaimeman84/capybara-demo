@@ -25,6 +25,12 @@ Capybara.register_driver :selenium_firefox do |app|
 end
 
 # Set default driver for visible execution (optional)
-# Capybara.default_driver = :selenium_chrome
-Capybara.default_driver = :selenium_firefox
-# Capybara.default_driver = :rack_test
+# Use environment variable for CI/CD, otherwise use visible browser
+if ENV['CI'] || ENV['CAPYBARA_DRIVER'] == 'rack_test'
+  # Headless for CI
+  Capybara.default_driver = :rack_test
+else
+  # Visible browser for local development
+  # Capybara.default_driver = :selenium_chrome
+  Capybara.default_driver = :selenium_firefox
+end

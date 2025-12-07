@@ -1,0 +1,39 @@
+name: Run Tests
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.4'
+        bundler-cache: true
+
+    - name: Install dependencies
+      run: bundle install
+
+    - name: Run RSpec tests
+      run: bundle exec rspec
+
+    - name: Run Cucumber tests
+      run: bundle exec cucumber
+      env:
+        # Use headless driver for CI
+        CAPYBARA_DRIVER: rack_test
+
+    - name: Test Summary
+      if: always()
+      run: |
+        echo "✅ RSpec and Cucumber tests completed!"
+        echo "Check the logs above for detailed results."
