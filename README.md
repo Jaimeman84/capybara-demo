@@ -109,6 +109,70 @@ bundle exec cucumber features/task_management.feature
 
 **Output:** 7 scenarios, 36 steps - all passing
 
+## Test Reports
+
+This project generates comprehensive test reports and code coverage:
+
+### Generated Reports
+
+When you run tests, the following reports are automatically generated:
+
+**RSpec Reports:**
+- `reports/rspec_results.html` - Human-readable HTML report
+- `reports/rspec_results.xml` - JUnit XML format (for CI tools)
+
+**Cucumber Reports:**
+- `reports/cucumber_results.html` - Beautiful HTML report with step details
+- `reports/cucumber_results.json` - JSON format (for integrations)
+
+**Code Coverage:**
+- `coverage/index.html` - SimpleCov coverage report showing which lines were tested
+- View your code coverage percentage and identify untested code
+
+### Viewing Reports Locally
+
+After running tests, open the reports in your browser:
+
+```bash
+# Run tests to generate reports
+bundle exec rspec
+bundle exec cucumber
+
+# Open HTML reports (Windows)
+start reports/rspec_results.html
+start reports/cucumber_results.html
+start coverage/index.html
+
+# Open HTML reports (Mac/Linux)
+open reports/rspec_results.html
+open reports/cucumber_results.html
+open coverage/index.html
+```
+
+### Reports in CI/CD
+
+GitHub Actions automatically uploads all reports as artifacts:
+1. Go to your repository's "Actions" tab
+2. Click on any workflow run
+3. Download "test-reports" artifact (contains all reports and coverage)
+4. Unzip and open the HTML files in your browser
+
+Reports are retained for 30 days.
+
+### Sample Reports
+
+**Cucumber HTML Report:**
+
+![Cucumber Report](docs/images/cucumber-report-screenshot.png)
+
+Beautiful, interactive report showing all features, scenarios, and steps with pass/fail status.
+
+**Code Coverage Report:**
+
+![Coverage Report](docs/images/rspec-coverage-screenshot.png)
+
+SimpleCov coverage showing **95.83% code coverage** - 23 out of 24 lines covered with detailed line-by-line analysis.
+
 ## BDD Test Coverage
 
 The test suite covers:

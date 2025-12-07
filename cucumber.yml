@@ -1,0 +1,1 @@
+default: --format pretty --format html --out reports/cucumber_results.html --format json --out reports/cucumber_results.json

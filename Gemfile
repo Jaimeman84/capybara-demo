@@ -14,4 +14,8 @@ group :test do
   gem 'capybara', '~> 3.40'
   gem 'selenium-webdriver', '~> 4.27'
   gem 'rack-test', '~> 2.1'
+
+  # Test reporting and coverage
+  gem 'rspec_junit_formatter', '~> 0.6.0'
+  gem 'simplecov', '~> 0.22', require: false
 end

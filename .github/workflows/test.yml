@@ -23,6 +23,9 @@ jobs:
     - name: Install dependencies
       run: bundle install
 
+    - name: Create reports directory
+      run: mkdir -p reports
+
     - name: Run RSpec tests
       run: bundle exec rspec
 
@@ -32,8 +35,18 @@ jobs:
         # Use headless driver for CI
         CAPYBARA_DRIVER: rack_test
 
+    - name: Upload test reports
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-reports
+        path: |
+          reports/
+          coverage/
+        retention-days: 30
+
     - name: Test Summary
       if: always()
       run: |
         echo "✅ RSpec and Cucumber tests completed!"
-        echo "Check the logs above for detailed results."
+        echo "📊 Test reports and coverage available in artifacts"

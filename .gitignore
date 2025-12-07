@@ -58,3 +58,8 @@ Thumbs.db
 *.tmp
 *.bak
 *.cache
+
+# Test reports and coverage
+reports/
+coverage/
+.coverage

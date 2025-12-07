@@ -1,5 +1,13 @@
 ENV['RACK_ENV'] = 'test'
 
+# Code coverage with SimpleCov
+require 'simplecov'
+SimpleCov.start do
+  add_filter '/spec/'
+  add_filter '/features/'
+  coverage_dir 'coverage'
+end
+
 require_relative '../app'
 require 'capybara/rspec'
 require 'rack/test'
