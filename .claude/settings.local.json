@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ruby --version)",
+      "Bash(bundle --version)",
+      "Bash(rails:*)",
+      "Bash(bundle install:*)",
+      "Bash(bundle exec rspec:*)",
+      "Bash(bundle exec cucumber:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

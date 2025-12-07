@@ -1,0 +1,31 @@
+<h1>Task Manager</h1>
+
+<form action="/tasks" method="post" class="task-form">
+  <input type="text" name="task_name" placeholder="Enter a new task..." required>
+  <button type="submit">Add Task</button>
+</form>
+
+<% if @tasks.empty? %>
+  <div class="empty-state">
+    <p>No tasks yet. Add one above to get started!</p>
+  </div>
+<% else %>
+  <ul class="task-list">
+    <% @tasks.each do |task| %>
+      <li class="task-item <%= 'completed' if task[:completed] %>">
+        <span class="task-name"><%= task[:name] %></span>
+
+        <% unless task[:completed] %>
+          <form action="/tasks/<%= task[:id] %>/complete" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-small btn-complete">Complete</button>
+          </form>
+        <% end %>
+
+        <form action="/tasks/<%= task[:id] %>" method="post" style="display: inline;">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit" class="btn btn-small btn-delete">Delete</button>
+        </form>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
